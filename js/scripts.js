@@ -4,24 +4,39 @@ var countArray = function(input1) {
     array.push(i);
   }
   return array;
-}; //add forEach loop that prints each array item into ul.
+};
 
-var printArray = function(numbers) {
-  numbers.forEach(function(number) {
+var divisible = function(numbers) {
+  return numbers.map(function(number) {
+    if (number % 15 === 0) {
+      return "ping pong";
+    } else if (number % 5 === 0) {
+      return "pong";
+    } else if (number % 3 === 0) {
+      return "ping";
+    } else {
+      return number;
+    }
+  })
+};
+
+var printArray = function(three) {
+  three.forEach(function(number) {
     var list = $("<li>" + number + "</li>");
     $(".output").append(list);
-    console.log(list);
-  });
+  })
 };
 
 
 $(document).ready(function() {
   $("#input").submit(function(event) {
     event.preventDefault();
+    $(".output").empty();
 
     var input1 = parseInt($("#input1").val());
     var numbers = countArray(input1);
-    printArray(numbers);
+    var three = divisible(numbers);
+    printArray(three);
 
     $(".output").show();
 
